@@ -4,14 +4,13 @@ from re import S
 from socket import *
 import optparse
 from threading import *
-from typing import final
 from termcolor import colored
 
 def connScan(host, port):
     try:
         S = socket(AF_INET, SOCK_STREAM)
         S.connect((host, port))
-        
+
         print(colored(f'[+] {port}/tcp OPEN', 'green'))
     except:
         print(colored(f'[-] {port}/tcp CLOSED', 'red'))
