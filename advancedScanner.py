@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-from re import S
 from socket import *
 import optparse
 from threading import *
