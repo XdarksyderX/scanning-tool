@@ -6,12 +6,24 @@ import optparse
 from threading import *
 from termcolor import colored
 
+def retBanner(port, host):
+    try:
+        socket.setdefaulttimeout(2)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((host, port))
+        banner = s.recv(1024)
+        return banner
+
+    except:
+        return ''
+
+
 def connScan(host, port):
     try:
         S = socket(AF_INET, SOCK_STREAM)
         S.connect((host, port))
-
-        print(colored(f'[+] {port}/tcp OPEN', 'green'))
+        banner = retBanner(port, host)
+        print(colored(f'[+] {port}/tcp OPEN', 'green | {banner}'))
     except:
         print(colored(f'[-] {port}/tcp CLOSED', 'red'))
     finally:
